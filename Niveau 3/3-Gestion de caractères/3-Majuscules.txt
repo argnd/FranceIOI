@@ -1,0 +1,21 @@
+import static java.lang.Math.*;
+import java.util.Arrays;
+import algorea.Scanner;
+import java.lang.StringBuffer;
+
+
+class Main {
+
+  public static Scanner entree = new Scanner(System.in);
+  public static String a = entree.nextLine();
+
+  public static void main(String[] args) {
+  
+  
+   System.out.println(a.toUpperCase());
+   
+   
+   }
+  
+   
+}

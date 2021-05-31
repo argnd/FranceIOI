@@ -1,0 +1,53 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.util.Arrays;
+import java.lang.StringBuffer;
+
+class Main {
+   
+  public static Scanner entree = new Scanner(System.in);
+ 
+  public static final String ACC=entree.nextLine();
+  public static final int LEN=ACC.length();
+  public static final int NB=entree.nextInt();
+
+  
+  public static void main(String[] args) {
+
+    for (int i = 0; i< NB; i++)
+    {
+       String[] titles= entree.nextLine().split(" ");
+       if (titles.length == LEN){
+           System.out.println(isAccronym(titles, ACC) ? Display(titles) : ""); 
+       } else {
+          continue;
+       } 
+    }
+   }  
+   public static boolean isAccronym(String[] w, String a){
+   int counter = 0;
+      for(int i = 0; i < w.length; i++){
+         String p1 = String.valueOf(w[i].charAt(0)).toUpperCase();
+         String p2 = String.valueOf(a.charAt(i)).toUpperCase();
+         if(p1.equals(p2)) counter +=1;
+      }
+   if (counter == a.length()){
+      return true;
+   }  else{
+      return false;
+   } 
+   }
+   
+   public static String Display(String[] s){
+   StringBuilder sb = new StringBuilder();
+      for(int i = 0; i < s.length; i++){
+         sb.append(s[i].substring(0,1).toUpperCase());
+         sb.append(s[i].substring(1,s[i].length()).toLowerCase());
+         if(i <s.length-1) sb.append(" ");
+      }
+   String fstr= sb.toString();
+   return fstr;
+   }
+
+}

@@ -1,0 +1,72 @@
+import static java.lang.Math.*;
+import java.util.Arrays;
+import algorea.Scanner;
+import java.lang.StringBuffer;
+
+
+class Main {
+
+  public static Scanner entree = new Scanner(System.in);
+  public static int NbMesures = entree.nextInt();
+  public static double DiffMax = entree.nextDouble();
+  public static double[] Val = new double[NbMesures];
+  public static boolean IsValid = false;
+  public static int count = 0;
+  
+  public static void main(String[] args) { 
+    //INPUT
+     for (int i = 0 ;i < NbMesures ; i = i + 1){
+        Val[i] = entree.nextDouble();
+     } 
+     IsValid(Val);
+     if (IsValid == false || Val.length <=2){
+        do {
+        lisser(Val);
+        count = count +1;
+        IsValid(Val);
+        } while (IsValid == false);  
+        }
+     System.out.println(count);   
+     }
+ 
+  public static double average (double[] arr){
+  double sum = 0;
+     for (int i = 0; i <arr.length; i++){
+        sum = sum +arr[i]; 
+     }
+     return (double) sum/arr.length;
+  }
+     public static void IsValid(double[] arr){
+     double absV;
+        for (int i = 1; i < arr.length; i++){
+        absV = Math.abs(arr[i]-arr[i-1]);
+           if (absV>DiffMax) {
+              return;
+           }
+        }
+     IsValid = true;
+     return;
+  }
+   
+  public static void lisser(double[] arr){
+     
+     int taille = NbMesures -2;
+     double tmp[];
+     if (taille > 0){
+      tmp = new double[NbMesures-2];
+     } else {
+     count = count -1;
+     return;}
+     
+     for (int i = 1; i <arr.length-1; i++){
+        tmp[i-1] = ((arr[i-1]+arr[i+1])/2); 
+     }
+     
+     for (int j = 0; j <tmp.length; j++){
+        arr[j+1] = tmp[j]; 
+     }  
+  }
+   
+   
+       
+}

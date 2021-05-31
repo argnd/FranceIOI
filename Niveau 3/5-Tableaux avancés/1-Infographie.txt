@@ -1,0 +1,61 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+
+class Main {
+
+ public static Scanner entree = new Scanner(System.in);
+ 
+ public static final int NBL = entree.nextInt(); //Lignes
+ public static final int NBC = entree.nextInt(); //Colonnes
+ 
+ public static final int NBR = entree.nextInt(); //Nb rect
+ 
+ public static void main(String[] args) {
+   char[][] rects = new char[NBL][NBC]; //Canvas
+   InitDots(rects);
+   
+   for (int i = 0; i < NBR; i++){
+      int TopLeftX,TopLeftY,BotRightX,BotRightY;
+      TopLeftX = entree.nextInt();
+      TopLeftY = entree.nextInt();
+      BotRightX = entree.nextInt();
+      BotRightY =entree.nextInt();
+      char Signe = entree.next().charAt(0);
+      PushRectPosToArray(TopLeftX,TopLeftY,BotRightX,BotRightY,Signe,rects);    
+    }
+  Draw(rects);
+  
+ }
+ 
+ public static void PushRectPosToArray(int x, int y, int x2, int y2, char c, char[][] rects) {
+    for (int i = x; i != x2+1; i++){
+        for (int j = y; j != y2+1; j++){
+           rects[i][j] = c;
+        }
+    }
+ }
+ 
+  public static void InitDots(char[][] rects) {
+     for (int i = 0; i <NBL; i++){
+        for (int j = 0; j <NBC; j++){
+           rects[i][j] = '.';
+        }
+    }
+ }
+ 
+  public static void Draw(char[][] rects) {
+    for (int i = 0; i <NBL; i++){
+        for (int j = 0; j <NBC; j++){
+           System.out.print(rects[i][j]);
+        }
+    System.out.println();
+    }
+ }
+ 
+ 
+} 
+ 
+ 

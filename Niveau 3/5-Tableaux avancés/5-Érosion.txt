@@ -1,0 +1,67 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+
+class Main {
+
+ public static Scanner entree = new Scanner(System.in);
+ 
+ public static final int NB= entree.nextInt(); //NB de erosion
+ public static final int H= entree.nextInt(); //Hauteur DU PLATEAU
+ public static final int L= entree.nextInt(); //longeuir DU PLATEAU
+ public static final int rL = L + 1; //backspace char after L char of canvas
+ 
+ 
+ public static void main(String[] args) {
+ 
+   char[][] print = new char[H][rL];
+   char[][] tochange = new char[H][rL];
+   for (int i = 0; i < H; i++){
+      for (int j = 0; j < rL ; j++){
+         print [i][j] = entree.nextChar();
+      }
+    }
+    
+    for (int k = 0; k < NB; k++){
+     for (int i = 0; i < H; i++){
+      for (int j = 0; j < L ; j++){
+         if (IsValid(print, i, j)==false){
+            tochange[i][j] = '.';
+         } else {
+            tochange[i][j] = print[i][j];
+         }
+      }
+     }
+     for (int i = 0; i < H; i++){
+      for (int j = 0; j < L ; j++){
+           print[i][j] = tochange[i][j];
+       }
+     }
+   }
+ 
+ Draw(print);   
+ } // main
+   
+  public static boolean IsValid(char[][] p, int l, int c) {
+     if (l+1 >= H  || l - 1 < 0 || c+1 >= L || c -1 < 0) {
+        return false;
+     }
+     
+     if (p[l+1][c] == '.' || p[l-1][c] == '.' || p[l][c+1] == '.' || p[l][c-1] =='.'){
+      return false;
+     }
+      
+   return true;
+ } 
+   
+   
+  public static void Draw(char[][] rects) {
+    for (int i = 0; i <H; i++){
+        for (int j = 0; j <rL; j++){
+           System.out.print(rects[i][j]);
+        }
+    }
+ } 
+}

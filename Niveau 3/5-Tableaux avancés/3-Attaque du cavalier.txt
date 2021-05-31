@@ -1,0 +1,96 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+  
+  class Main {
+
+ public static Scanner entree = new Scanner(System.in);
+ 
+ 
+ public static void main(String[] args) {
+ 
+   char[][] chess = new char[8][8]; //Canvas
+
+   int counter = 0;
+   for (int i = 0; i < 8; i++){
+      String linestatus = entree.nextLine();
+      for (int j = 0; j<linestatus.length(); j++){
+         chess[i][j] = linestatus.charAt(j);
+         if(chess[i][j] == 'C'){
+            counter += 1;
+         }
+      }
+   }
+    
+  int[][] cavposs = new int[counter][2];
+  counter = 0;
+   for (int i = 0; i < 8; i++){
+      for (int j = 0; j<8; j++){
+         if(chess[i][j] == 'C'){
+            cavposs[counter][0] = i;
+            cavposs[counter][1] = j;
+            counter +=1;
+         }
+      }
+   }
+   
+  System.out.println(CanEat(chess, cavposs)? "yes" : "no");
+   
+   
+ } //main
+ 
+ 
+  public static boolean CanEat(char[][] plateau, int[][] cavpos) {
+  for (int i = 0; i < cavpos.length; i++){
+     int cavposl = cavpos[i][0];
+     int cavposc = cavpos[i][1];
+    
+    
+    //test 8 possible move (if they are possible)
+      if(cavposl - 2 >= 0 && cavposc -1 >= 0){
+           if(Character.isLowerCase(plateau[cavposl-2][cavposc-1])) {
+              return true;
+           }
+        }
+      if(cavposl - 2 >= 0 && cavposc +1 < 8){
+           if(Character.isLowerCase(plateau[cavposl-2][cavposc+1])) {
+              return true;
+           }
+        }
+      if(cavposl - 1 >= 0 && cavposc -2 >= 0){
+           if(Character.isLowerCase(plateau[cavposl-1][cavposc-2])) {
+              return true;
+           }
+        }
+      if(cavposl - 1 >= 0 && cavposc + 2 < 8){
+           if(Character.isLowerCase(plateau[cavposl-1][cavposc+2])) {
+              return true;
+           }
+        }
+      if(cavposl + 2 < 8 && cavposc -1 >= 0){
+           if(Character.isLowerCase(plateau[cavposl+ 2][cavposc-1])) {
+              return true;
+           }
+        }
+      if(cavposl + 2 < 8 && cavposc +1 < 8){
+           if(Character.isLowerCase(plateau[cavposl+2][cavposc+1])) {
+              return true;
+           }
+        }
+      if(cavposl + 1< 8 && cavposc -2 >= 0){
+           if(Character.isLowerCase(plateau[cavposl+1][cavposc-2])) {
+              return true;
+           }
+        }
+      if(cavposl + 1 < 8 && cavposc +2 < 8){
+           if(Character.isLowerCase(plateau[cavposl+1][cavposc+2])) {
+              return true;
+           }
+        }         
+     }
+   return false; 
+ }
+ 
+} //class

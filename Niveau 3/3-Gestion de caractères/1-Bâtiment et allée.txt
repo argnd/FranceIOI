@@ -1,0 +1,22 @@
+import static java.lang.Math.*;
+import java.util.Arrays;
+import algorea.Scanner;
+import java.lang.StringBuffer;
+
+
+class Main {
+
+  public static Scanner entree = new Scanner(System.in);
+  
+  public static String a = entree.nextLine();
+  public static int b = entree.nextInt();
+  
+  public static void main(String[] args) {
+  
+   System.out.print((int) a.charAt(0)-64);
+   System.out.print((char) (64+b));
+   
+   }
+  
+   
+}

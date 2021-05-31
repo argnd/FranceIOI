@@ -1,0 +1,37 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int NB = entree.nextInt();
+   public static final int BASE = entree.nextInt();    
+   
+   public static void main(String[] args) {
+  
+   int quotien = 0;
+   int reste = 0;
+   int tmp = NB;
+   
+   List<Integer> ch = new ArrayList<Integer>();
+   
+   do 
+   {
+     reste = tmp % BASE;
+     ch.add(reste);
+     quotien =(int)(tmp / BASE);
+     tmp = quotien;
+     
+   } while (quotien!=0);
+   
+   System.out.println(ch.size());
+   for (int i = ch.size()-1; i >= 0; i--){
+      System.out.print(ch.get(i)+" ");
+   }
+   
+   
+  } //main
+
+}//class

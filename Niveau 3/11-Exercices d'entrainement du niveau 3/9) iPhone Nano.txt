@@ -1,0 +1,46 @@
+import static java.lang.Math.*;
+import java.util.*;
+import algorea.Scanner;
+import java.lang.*;
+
+class Main {
+   
+   static Scanner entree = new Scanner(System.in);
+   
+   static int D = entree.nextInt();
+   int gloup = 0;
+   
+
+   public static void main(String[] args) {
+      ArrayList<String> DIC = new ArrayList<String>();
+      
+      for (int i = 0; i < D ; i++){
+         DIC.add(entree.nextLine());
+      }
+      
+      ArrayList<String> VALIDS = new ArrayList<String>(DIC);
+      
+      int N = entree.nextInt();
+      for (int i = 0; i < N ; i++){
+         String tmp = entree.nextLine();
+         ArrayList<Character> ltrs= new ArrayList<Character>();
+         ltrs.add(tmp.charAt(0));
+         ltrs.add(tmp.charAt(1));
+         ltrs.add(tmp.charAt(2));
+         ltrs.add(tmp.charAt(3));
+         
+         for (int j = 0; j < VALIDS.size(); j++){
+            if (ltrs.contains((Character)VALIDS.get(j).charAt(i))== false
+                                 || VALIDS.get(j).length() != N){
+               VALIDS.remove(j);
+               j--;
+            }
+         }
+         
+      }
+      System.out.println(VALIDS.get(0));
+      
+    }
+  
+   
+}   

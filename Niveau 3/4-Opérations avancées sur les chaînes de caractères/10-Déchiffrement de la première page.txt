@@ -1,0 +1,32 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+  public static Scanner entree = new Scanner(System.in);
+  
+  public static final String CODE = entree.nextLine();
+  public static final String MSG = entree.nextLine();
+  
+  public static final char[] LTRS = CODE.toCharArray();
+  
+  public static void main(String[] args) {
+  StringBuilder sb = new StringBuilder();
+  
+     for (int i = 0; i < MSG.length(); i++){
+        if ((MSG.charAt(i)>= 'a' && MSG.charAt(i)<= 'z') || (MSG.charAt(i)>= 'A' && MSG.charAt(i)<= 'Z')){
+           if (Character.isUpperCase(MSG.charAt(i))){
+              sb.append(String.valueOf(LTRS[(int)MSG.charAt(i)-'A']).toUpperCase());
+           } else {
+              sb.append(LTRS[(int)MSG.charAt(i)-'a']);
+           }
+        }  else {
+           sb.append(MSG.charAt(i));
+        } 
+     } 
+     System.out.print(sb.toString());
+  }
+     
+}

@@ -1,0 +1,39 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+//Complexity Issue
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+
+
+        
+   public static void main(String[] args) {
+  
+   int N = entree.nextInt();
+   int[] ns = new int[N];
+   for (int i = 0; i < N ; i++){
+      ns[i] = entree.nextInt();
+   }
+   
+   int counter = 0;
+   int K = entree.nextInt();
+ 
+   for (int i = 0; i <K ; i++){
+      int tmp  = entree.nextInt();
+      for (int j = 0; j < N; j++){
+         if(ns[j]==tmp){
+            counter++;
+         }
+      }
+   }
+
+   System.out.println(counter);
+   
+  } //main
+
+
+}//class

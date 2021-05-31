@@ -1,0 +1,29 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int NB = entree.nextInt();
+
+   public static void main(String[] args) {
+   
+   hanoi(NB,1,3,2);
+
+   }
+   
+  public static void hanoi(int nb, int dep, int arriv , int interm) {
+       
+         if (nb==1)
+    {
+        System.out.println(dep +" -> "+arriv);
+        return;
+    }
+       int tmp = nb-1;
+       hanoi(tmp ,dep,interm, arriv);
+       System.out.println(dep+ " -> " + arriv);
+       hanoi(tmp ,interm,arriv,dep);        
+     }
+   }

@@ -1,0 +1,29 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+
+class Main {
+ public static Scanner entree = new Scanner(System.in);
+ 
+ public static final int NBBAC= entree.nextInt(); 
+ public static final int CAMIONTAILLE= entree.nextInt(); 
+ 
+ public static void main(String[] args) {
+    int[] bacs = new int[NBBAC];
+    
+    for(int i = 0; i < NBBAC; i++){
+       bacs[i] = entree.nextInt();
+    }
+   Arrays.sort(bacs);
+   
+   for(int i = bacs.length-1; i >= bacs.length -CAMIONTAILLE ; i--){
+       if (i == bacs.length -CAMIONTAILLE - 1){
+         System.out.println(bacs[i]);
+       }else{
+       System.out.print(bacs[i]+ " ");
+       }
+    }
+ }
+}

@@ -1,0 +1,28 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int N = entree.nextInt();
+   public static final int M = entree.nextInt();
+
+   public static void main(String[] args) {
+   
+   entreDeux(N,M);
+
+   }
+   
+  public static void entreDeux(int debut, int fin) {
+  
+    if(debut== fin){
+       System.out.print(debut);
+       return;
+    }
+      System.out.print(debut+ " ");
+      entreDeux(debut+1,fin);
+      return;
+   }
+}

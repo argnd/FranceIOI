@@ -1,0 +1,24 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+
+//Correct but wont pass, see C++ version for validation
+
+class Main
+{
+   public static void main(String[] args)
+   {
+      Scanner entrée = new Scanner(System.in);
+      int nbLettres = entrée.nextInt();
+      String alphabet = entrée.nextLine();
+      int dist =0;
+      for (int ligne = 1; ligne < 2 * nbLettres; ligne = ligne + 1)
+      {
+         for (int colonne = 1; colonne < 2 * nbLettres; colonne = colonne + 1)
+         {
+            dist = max(abs(ligne-nbLettres),abs(colonne-nbLettres));
+            System.out.print(alphabet.charAt(alphabet.length()-(nbLettres - dist)));
+         }
+         System.out.println();
+      }
+  }
+}

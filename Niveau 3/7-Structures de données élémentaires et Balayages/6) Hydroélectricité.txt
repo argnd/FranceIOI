@@ -1,0 +1,33 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+    public static Scanner entree = new Scanner(System.in);
+    public static int K = entree.nextInt(); //Longeur canal 
+    public static int N = entree.nextInt(); //Longeur riviere
+    
+   public static void main(String[] args) {
+
+     int[] courrant = new int[N];
+     int max = 0;
+     
+     for (int i = 0; i < N; i ++){
+        courrant[i] = entree.nextInt();
+     }
+     
+     for (int i = 0; i < K; i++){
+        max = max + courrant[i];
+     }
+     
+     int sum = max;
+          
+     for (int i = K; i < N; i++){
+        sum = sum + courrant[i] - courrant[i-K];
+        if (sum > max) max = sum;
+     }
+   System.out.println(max);  
+   }
+}

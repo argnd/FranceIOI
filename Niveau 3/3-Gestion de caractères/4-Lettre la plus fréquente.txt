@@ -1,0 +1,35 @@
+import static java.lang.Math.*;
+import java.util.Arrays;
+import algorea.Scanner;
+import java.lang.StringBuffer;
+
+
+class Main {
+
+  public static Scanner entree = new Scanner(System.in);
+  public static String a = entree.nextLine().toUpperCase().replaceAll("\\s+","");
+  public static int[] Counter = new int[26];
+  public static void main(String[] args) {
+  
+    for (int i = 0 ;i< a.length(); i++){
+      int cLetterVal = (int)(a.charAt(i)-'A'); 
+      Counter[cLetterVal] = Counter[cLetterVal] + 1;
+   }
+   
+   System.out.println((char) (getIndexOfLargest(Counter)+'A'));
+   
+   }
+   
+   public static  int getIndexOfLargest( int[] array )
+   {
+     if ( array == null || array.length == 0 ) return -1; // null or empty
+ 
+     int largest = 0;
+     for ( int i = 1; i < array.length; i++ )
+     {
+         if ( array[i] > array[largest] ) largest = i;   
+     }
+     return largest; // position of the first largest found
+   }
+   
+}

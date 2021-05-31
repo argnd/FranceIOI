@@ -1,0 +1,20 @@
+CHIFFRES = "0123456789ABCDEF"
+def lireEntier():
+   nombre = 0
+   for chiffre in input():
+      nombre = nombre * 16
+      if (chiffre >= '0') and (chiffre <= '9'):
+         nombre += int(chiffre)
+      else:
+         nombre += ord(chiffre) - ord('A') + 10
+   return nombre
+   
+def afficherEntier(nombre):
+   if nombre > 15:
+      afficherEntier(nombre // 16)
+   print(CHIFFRES[nombre % 16],end="")
+nbNombres = lireEntier()
+somme = 0
+for loop in range(nbNombres):
+   somme += lireEntier()
+afficherEntier(somme // nbNombres)

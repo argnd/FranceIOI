@@ -1,0 +1,193 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+class Main
+{
+   public static List<int[]> boules = new ArrayList<int[]>(); //y, x  
+    
+   public static final int[][] directions= new int[][]{{0,1},{1,0},{-1,0},{0,-1}}; 
+   public static int c = 0;
+                                             //0->Droite 1->Bas 2->Haut 3->Gauche
+   public static void main(String[] args)
+   {
+      Scanner entree = new Scanner(System.in);
+      final int L = entree.nextInt();
+      final int C = entree.nextInt();
+      
+      char[][] zone  = new char[L][C];
+
+      for (int i = 0; i < L;i++){//y
+      String line = entree.nextLine();
+      line.replace("\n", "");
+         for(int j = 0; j < C ; j++){ //x
+            char tmp = line.charAt(j);
+             if (tmp =='x'){ //boules
+               zone[i][j] = tmp;
+               boules.add(new int[]{i,j});
+            } else {
+               zone[i][j] = tmp; //Sortie
+            }
+         }
+      //char tmp = entree.nextChar();//discard line break 
+      }
+
+      //////////////////////////////////////////////////////////
+       int NBMOV = 0; 
+         try{
+           NBMOV = entree.nextInt(); //Nombre de mouvement
+      } catch (InputMismatchException e){
+           //System.out.println(e);
+      }
+      for (int i = 0; i < NBMOV;i++){ //Pour chaque mouvement
+         char curdir = entree.nextChar();
+         int dirval = 0; // direction char to direction array index
+         if (curdir =='N'){
+            dirval= 2;
+         } else if (curdir =='S'){
+            dirval= 1;
+         } else if (curdir =='O'){
+            dirval= 3;
+         } else {
+            dirval= 0;
+         }
+         
+         if (boules.size() !=0){
+                           
+         List<Integer> ordre= 
+         new ArrayList<Integer>(getOrder(curdir)); // Ordre des boules (index dans boules)
+         //System.out.println(ordre);
+         Iterator<Integer> iter = ordre.iterator();
+         List<int[]> found =new ArrayList<int[]>(); 
+         while (iter.hasNext()){ // pour chaque boule encore présente
+            int tmp = iter.next();
+            int[] cur = new int[]{boules.get(tmp-c)[0],boules.get(tmp-c)[1]};  //y x
+            int[] next = cur.clone();
+            boolean validity = true; //loop condition
+            //ROULE MA BOULE
+            while(validity){
+               next[0] = next[0] + directions[dirval][0];
+               next[1] = next[1] + directions[dirval][1];
+               boolean dc = (next[0] < L && next[0] >=0 && next[1] < C && next[1]>=0);  
+               if (dc && zone[next[0]][next[1]] == '#'){
+                  validity = false;
+                  zone[boules.get(tmp)[0]][boules.get(tmp)[1]]= '.';
+                  boules.get(tmp)[0] = cur[0];
+                  boules.get(tmp)[1] = cur[1];
+                  zone[boules.get(tmp)[0]][boules.get(tmp)[1]]= 'x';
+                  break;
+               } else if (dc && zone[next[0]][next[1]] == 'x'){
+                  validity = false;
+                  zone[boules.get(tmp)[0]][boules.get(tmp)[1]]= '.';
+                  boules.get(tmp)[0] = cur[0];
+                  boules.get(tmp)[1] = cur[1];
+                  zone[boules.get(tmp)[0]][boules.get(tmp)[1]]= 'x';
+                  break;
+               } else if(dc &&zone[next[0]][next[1]]=='O'){
+                  zone[boules.get(tmp)[0]][boules.get(tmp)[1]]= '.';
+                  found.add(boules.get(tmp));
+                  validity = false;
+                  //System.out.println("GOALALLALALAL   "+tmp);
+                  break;
+               } else if (!dc){
+                  validity = false;
+                  zone[boules.get(tmp)[0]][boules.get(tmp)[1]]= '.';
+                  boules.get(tmp)[0] = cur[0];
+                  boules.get(tmp)[1] = cur[1];
+                  zone[boules.get(tmp)[0]][boules.get(tmp)[1]]= 'x';
+                  break;
+               }
+              if(validity== true){
+                 cur[0] = next[0];
+                 cur[1] = next[1];
+              } 
+             }
+         //System.out.println("POS:  "+boules.get(ordre[j])[0]+"    "+boules.get(ordre[j])[1]);     
+         } // fin mouvement boules
+         boules.removeAll(found);
+      //for (int z = 0; z < boules.size();z++){
+      //      System.out.println("POS:  "+z+"  "+boules.get(z)[0]+"    "+boules.get(z)[1]);           
+      // }
+       } else {
+          System.out.println(boules.size());
+          System.exit(0);
+       }       
+      }//fin nombre mouvement
+      System.out.println(boules.size());
+      // for (int i = 0; i < L;i++){//y
+      //   for(int j = 0; j < C ; j++){ //x
+      //      System.out.print(zone[i][j]);           
+      //   }
+      //System.out.println();
+      //}
+ }//main
+   
+
+   public static List<Integer> getOrder(char d){ // index boules
+      if(boules.size() == 1){ // cas une seule boule
+         ArrayList<Integer> tmp = new ArrayList<Integer>();
+         tmp.add(0);
+         return tmp;
+      }
+      int SIZE = boules.size();
+      Integer[][] tmp = new Integer[SIZE][2]; //0-index , 1-val
+      Comparator<Integer[]> comp = new Comparator<Integer[]>(){
+            public int compare(Integer[] a, Integer[] b){
+               int tmp = Integer.compare(a[1],b[1]);
+               if (tmp == 0){
+                  return -1;
+               }
+               return Integer.compare(a[1],b[1]);
+            }
+      };
+      Comparator<Integer[]> reversed= new Comparator<Integer[]>(){
+            public int compare(Integer[] b, Integer[] a){
+               int tmp = Integer.compare(a[1],b[1]);
+               if (tmp == 0){
+                  return 1;
+               }
+               return Integer.compare(a[1],b[1]);
+            }
+      };
+      switch(d){ //Ordre en fonction de la direction
+      case 'N' : //NORD -> Min y first 
+         for (int i = 0; i < SIZE; i++){
+            tmp[i][0] = i;
+            tmp[i][1] = boules.get(i)[0];
+         }
+         Arrays.sort(tmp,comp);
+         break;
+      case 'S' : //SUD-> Max y first 
+         for (int i = 0; i < SIZE; i++){
+            tmp[i][0] = i;
+            tmp[i][1] = boules.get(i)[0];
+         } 
+         Arrays.sort(tmp,reversed);
+         break;
+      case 'O' : //OUEST -> Min x first 
+         for (int i = 0; i < SIZE; i++){
+            tmp[i][0] = i;
+            tmp[i][1] = boules.get(i)[1];
+         }
+         Arrays.sort(tmp,comp);
+         break;
+      case 'E' : //EST -> Max x first 
+         for (int i = 0; i < SIZE; i++){
+            tmp[i][0] = i;
+            tmp[i][1] = boules.get(i)[1];
+         }
+         Arrays.sort(tmp,reversed);
+         break;
+      }
+   return getColumn(tmp,0); 
+   }
+   
+    public static List<Integer> getColumn(Integer[][] array, int index){
+    Integer[] column = new Integer[array.length]; 
+    for(int i=0; i<column.length; i++){
+       column[i] = array[i][index];
+    }
+    return Arrays.asList(column);
+    }
+
+}//class

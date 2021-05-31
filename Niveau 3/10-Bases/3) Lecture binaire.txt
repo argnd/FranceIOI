@@ -1,0 +1,17 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final String N= entree.nextLine();
+     
+   public static void main(String[] args) {
+   
+   System.out.println(Integer.parseInt(N,2));
+   
+  } //main
+
+}//class

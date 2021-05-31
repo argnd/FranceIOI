@@ -1,0 +1,68 @@
+import static java.lang.Math.*;
+import java.util.Arrays;
+import algorea.Scanner;
+import java.lang.StringBuffer;
+
+
+class Main {
+
+  public static Scanner entree = new Scanner(System.in);
+  public static int NbFrog = entree.nextInt();
+  public static int NbTours= entree.nextInt();
+  public static int[] pFrogs= new int[NbFrog];
+  public static int[] CountFirstPos= new int[NbFrog];  
+  
+  public static void main(String[] args) {
+  
+   for (int i = 0; i < NbTours; i++){
+   
+      int cFrog = entree.nextInt()-1;
+      int Dist = entree.nextInt();
+      int BestFrog = getIndexOfLargest(pFrogs);
+      //System.out.println(BestFrog); 
+      
+      pFrogs[cFrog] = pFrogs[cFrog]+ Dist;
+      if (BestFrog != -1) CountFirstPos[BestFrog] = CountFirstPos[BestFrog] +1;
+      //System.out.println(getIndexOfLargest(CountFirstPos)+1); 
+      }
+      
+     
+   System.out.println(getIndexOfLargest2(CountFirstPos)+1); 
+     
+   }
+  
+
+   public static  int getIndexOfLargest( int[] array )
+   {
+     if ( array == null || array.length == 0 ) return -1; // null or empty
+   
+     int largest = 0;
+     int largestCount =0;
+     for ( int i = 1; i < array.length; i++ )
+     {
+         if ( array[i] > array[largest] ) largest = i;    
+     }
+     
+     for ( int i = 0; i < array.length; i++ )
+     {
+         if ( array[i] == array[largest]) largestCount = largestCount + 1;
+         if (largestCount == 2) return -1;
+     }
+     return largest; // position of the first largest found
+   }
+
+
+   public static  int getIndexOfLargest2( int[] array )
+   {
+     if ( array == null || array.length == 0 ) return -1; // null or empty
+ 
+     int largest = 0;
+     for ( int i = 1; i < array.length; i++ )
+     {
+         if ( array[i] > array[largest] ) largest = i;    
+     }
+
+     return largest; // position of the first largest found
+   }
+   
+}

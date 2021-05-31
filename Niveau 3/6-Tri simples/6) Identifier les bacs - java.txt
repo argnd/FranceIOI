@@ -1,0 +1,55 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+class Main {
+ 
+ //THIS CODE DOES NOT VALIDATE THE EXERCICE EVEN IF IT IS CORRECT BOTH IN LOGIC AND COMPLEXITY
+ //SEE THE C++ Version for a validation
+ public static Scanner entree = new Scanner(System.in);
+ 
+ public static final int NB= entree.nextInt();
+
+ public static void main(String[] args) {
+
+     List<int[]> bacs = new ArrayList<int[]>();
+      
+     for( int i = 0; i< NB ; i ++){
+       bacs.add(new int[]{entree.nextInt(),entree.nextInt()});
+     }
+
+       quickSort(bacs,0,bacs.size()-1);
+       
+     for (int i = 0; i < NB ; i++){
+           System.out.print(bacs.get(i)[0] + " " +bacs.get(i)[1]);
+           System.out.println();
+         }
+
+ } //main        
+   
+   
+   public static void quickSort(List<int[]> l, int begin, int end) {
+    if (begin < end) {
+        int partitionIndex = partition(l, begin, end);
+
+        quickSort(l, begin, partitionIndex-1);
+        quickSort(l, partitionIndex+1, end);
+    }
+   }
+
+ private static int partition(List<int[]> l, int begin, int end) {
+    int pivot = l.get(end)[1];
+    int i = (begin-1);
+
+    for (int j = begin; j < end; j++) {
+        if (l.get(j)[1] <= pivot) {
+            i++;
+            Collections.swap(l, i, j);
+        }
+    }
+
+    Collections.swap(l, i+1, end);
+    return i+1;
+   }
+
+} //class

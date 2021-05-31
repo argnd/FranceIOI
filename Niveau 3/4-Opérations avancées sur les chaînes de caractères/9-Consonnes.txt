@@ -1,0 +1,16 @@
+class Main
+{
+   public static void main(String[] args)
+   {
+      for (char car = 'a'; car <= 'z'; car = (char)(car + 1)){
+       if (car !='a' && car !='e' && car !='i' && car !='o' && car !='u'&& car !='y') {
+            if (car < 'z'){
+            System.out.print(car + " ");
+            }
+            else {
+            System.out.print(car);
+           }  
+       }
+      }
+   }
+}

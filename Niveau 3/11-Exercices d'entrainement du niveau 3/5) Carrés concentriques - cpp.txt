@@ -1,0 +1,26 @@
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
+ 
+char trouveLettre(int iLig, int iCol, int taille, string s)
+{
+   iLig = min(iLig, taille-1-iLig);
+   iCol = min(iCol, taille-1-iCol);
+   return s.at(s.length()-1-min(iLig, iCol));
+}
+int main()
+{
+   int nbLettres;
+   string  alphabet;
+   cin >> nbLettres;
+   cin >> alphabet;
+   int taille = 2 * nbLettres - 1;
+   for(int iLig = 0; iLig < taille; iLig++)
+   {
+      for(int iCol = 0; iCol < taille; iCol++)
+         cout << trouveLettre(iLig, iCol, taille, alphabet);
+      cout << endl;
+   }
+   return 0;
+}

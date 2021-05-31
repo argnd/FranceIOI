@@ -1,0 +1,28 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   public static void main(String[] args) {
+      Scanner entrée = new Scanner(System.in);
+      int NB = entrée.nextInt();
+      List<Integer> pile = new ArrayList<Integer>();
+      
+      for (int i= 0; i< NB; i++)
+      {
+         int qty= entrée.nextInt();
+         int dte = entrée.nextInt();
+         if (qty> 0)
+            for (int item = 0; item < qty; item++)
+               pile.add(dte);
+         else
+            for (int item = 0; item < -qty; item++)
+               pile.remove(0);
+      }
+      int minimum = pile.remove(pile.size()-1);
+      while (!pile.isEmpty())
+         minimum = Math.min( minimum, pile.remove(pile.size()-1));
+      System.out.println(minimum);
+   }
+}

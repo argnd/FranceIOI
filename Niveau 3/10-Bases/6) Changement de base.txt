@@ -1,0 +1,72 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int BASEDEP = entree.nextInt();
+   public static final int BASEARR = entree.nextInt();    
+   public static final int TAILLEBASEDEP = entree.nextInt(); 
+    
+   public static void main(String[] args) {
+  
+   
+   List<Integer> tobase= new ArrayList<Integer>();
+   int[] frombase = new int[TAILLEBASEDEP];
+   
+   String val= entree.nextLine();
+   String[] tmpval = val.split("\\s+");
+   for (int i = 0; i < tmpval.length; i++){
+      frombase[i]=Integer.parseInt(tmpval[i]);
+   }
+   
+  int valeurenbase10 = toBaseTen(frombase,BASEDEP);
+  int[] baseX = fromBaseTenToBaseX(valeurenbase10,BASEARR);
+   
+  for (int i = 0; i < baseX.length;i++){
+     System.out.print(baseX[i]+" ");
+  }
+   
+  } //main
+  
+  public static int toBaseTen(int[] Valeurs,int BaseFrom ) {
+  
+   int ans = 0;
+   int val = 0;
+   for (int i = 0; i <Valeurs.length; i++){
+   val = Valeurs[i];
+   val = val*((int)Math.pow(BaseFrom,Valeurs.length-i-1));
+   ans = ans + val;
+   }
+  return ans;
+  } //function
+  
+  public static int[] fromBaseTenToBaseX(int valeur,int BaseTo) {
+  
+   List<Integer> ch = new ArrayList<Integer>();
+   
+   int reste =0;
+   int quotien = 0;
+   int tmp = valeur; 
+   do 
+   {
+     reste = tmp % BaseTo;
+     ch.add(reste);
+     quotien =(int)(tmp / BaseTo);
+     tmp = quotien;
+     
+   } while (quotien!=0);
+   
+   int[] res = new int[ch.size()];
+   int c =0;
+   for (int i = ch.size()-1; i >= 0; i--){
+      res[c]= ch.get(i);
+      c++;
+   }
+  return res;
+  }
+
+
+}//class

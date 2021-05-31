@@ -1,0 +1,64 @@
+import static java.lang.Math.;
+import java.util.Arrays;
+import algorea.Scanner;
+import java.lang.StringBuffer;
+
+class Main {
+   
+   static Scanner entree = new Scanner(System.in);
+   
+   public static final int R = entree.nextInt();
+   public static final int C = entree.nextInt();
+   
+   public static void main(String[] args) {
+   
+   int tab[][] = new int[R][C];
+   
+   
+     for (int i = 0; i  R; i++) {
+         for (int j = 0; j  C; j++) {
+            tab[i][j] = entree.nextInt();
+         }
+     }
+   
+   
+    for (int i = 0; i  R; i++) {
+         for (int j = 0; j  C; j++) {
+            if (tab[i][j] == 0){
+              tab[i][j] = 1;
+            }  else {
+              tab[i][j] = 0;
+            }
+         }
+     }
+   
+   int p1 = maximalSquare(tab,R,C); 
+   
+   
+   
+   System.out.println(p1);
+ 
+
+  }
+  
+   public static int maximalSquare(int[][] matrix,int r, int c) {
+        int[] dp = new int[c + 1];
+        int maxsqlen = 0, prev = 0;
+        for (int i = 1; i = r; i++) {
+            for (int j = 1; j = c; j++) {
+                int temp = dp[j];
+                if (matrix[i - 1][j - 1] == 1) {
+                    dp[j] = Math.min(Math.min(dp[j - 1], prev), dp[j]) + 1;
+                    maxsqlen = Math.max(maxsqlen, dp[j]);
+                } else {
+                    dp[j] = 0;
+                }
+                prev = temp;
+            }
+        }
+        return maxsqlen ;
+    }
+  
+}  
+
+   

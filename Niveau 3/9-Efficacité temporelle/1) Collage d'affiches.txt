@@ -1,0 +1,54 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+//Mauvaise complexité
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int NB = entree.nextInt();
+   
+   public static void main(String[] args) {
+   
+   List<Integer> TailleAffiches= new ArrayList<Integer>();
+   for (int i = 0; i< NB; i++){
+     //System.out.println(i + "  NB  ");
+     char tmp = entree.nextChar();
+     
+      if (tmp == 'C'){   // Si coller une affiche
+         int t = entree.nextInt();
+         
+         
+         if (TailleAffiches.size() == 0){ // Cas 1ere affiche
+            TailleAffiches.add(t);
+         } else {
+         
+            for (int j = 0; j < TailleAffiches.size(); j++){
+               //System.out.println(TailleAffiches.size()+"    " + j);
+               //System.out.println(TailleAffiches.get(j)+ "    "+ t);
+               //System.out.println((TailleAffiches.get(j) <= t) + "    " + j);
+               if (TailleAffiches.get(j) <= t){
+                  //System.out.println("TEST");
+                  TailleAffiches.remove(j); // supprime les affiches plus petite
+                  j--;
+               }
+             }
+            
+         TailleAffiches.add(t);
+         }
+         
+         
+         
+      } else if (tmp == 'Q') {
+         System.out.println(TailleAffiches.size()); // affiche nombre d'affihces viisble
+         tmp = entree.nextChar(); //discard return line char
+      }
+    }
+    
+    
+    
+    
+  } //main
+}//class

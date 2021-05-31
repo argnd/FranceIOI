@@ -1,0 +1,26 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final String S = entree.nextLine();
+
+   public static void main(String[] args) {
+   
+   inverse(S,0);
+
+   }
+   
+  public static void inverse(String s, int compteur) {
+  
+    if(s.length()== compteur){
+       return;
+    }
+      System.out.print(s.charAt(s.length()-1-compteur));
+      inverse(s,compteur+1);
+      return;
+   }
+}

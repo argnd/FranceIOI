@@ -1,0 +1,96 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+
+class Main {
+
+ public static Scanner entree = new Scanner(System.in);
+ 
+ public static final int COTE = entree.nextInt(); //Lignes
+
+ public static void main(String[] args) {
+   int[][] mSquare = new int[COTE][COTE];
+      for (int i = 0; i <COTE; i++){
+        for (int j = 0; j <COTE; j++){
+           mSquare[i][j] = entree.nextInt();
+        }
+    }
+    
+ System.out.println(IsMagic(mSquare) == true ? "yes": "no"); 
+ }
+ 
+  public static boolean IsMagic(int[][] square) {
+  
+   int sum  = 0;
+   int test=0;
+   int[] sqqq= new int[COTE*COTE];
+   int counter = 0;
+   
+   int theoricalsum= 0;
+   int squaresum = 0;
+   
+   
+   for (int i = COTE * COTE; i >0; i--){ // number from [1 to COTE*COTE]
+     theoricalsum= theoricalsum+ i;
+   }
+   
+    //Check fo total sum of square  & invalid numbers & duplicates numbers
+    for (int i = 0; i <COTE; i++){ 
+      for (int j = 0; j <COTE; j++){
+           sqqq[counter] = square[i][j];
+           squaresum = squaresum + square[i][j];
+           counter = counter +1;
+           if (square[i][j] <= 0 || square[i][j]>COTE*COTE) return false;
+      }
+    }
+  if (squaresum != theoricalsum) return false;
+  if (CheckDupes(sqqq) == true) return false;               
+   
+   
+    for (int j = 0; j <COTE; j++){ // SET TEST VALUE
+         sum  = sum + square[0][j];
+    } 
+ 
+   for (int i = 0; i <COTE; i++){ //Col sum
+   test = 0;
+      for (int j = 0; j <COTE; j++){
+        test = test + square[j][i];
+      }
+    if (test != sum) return false;
+    }
+
+    for (int i = 0; i <COTE; i++){ //Row sum
+    test =0;
+      for (int j = 0; j <COTE; j++){
+           test = test + square[i][j];
+      }
+    if (test != sum) return false;
+    }
+
+    test =0;    //Diag 11 22 33 .. nn
+    for (int j = 0; j <COTE; j++){
+         test = test + square[j][j];
+      } 
+    if (test != sum) return false;
+    
+    test =0; 
+    for (int j = 0; j <COTE; j++){//Diag 1n (1+1)(n-1) ....n1
+         test = test + square[j][COTE-j-1];
+      } 
+    if (test != sum) return false;
+
+ return true;  
+ }
+ 
+ public static boolean CheckDupes(int[] arr){
+ boolean duplicates=false;
+   for (int j=0;j<arr.length;j++){
+     for (int k=j+1;k<arr.length;k++){
+       if (k!=j && arr[k] == arr[j]) duplicates=true;
+     }
+   }
+ return duplicates; 
+ }
+} 

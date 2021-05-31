@@ -1,0 +1,94 @@
+import static java.lang.Math.*;
+import java.util.*;
+import algorea.Scanner;
+import java.lang.*;
+
+class Main {
+   
+   static Scanner entree = new Scanner(System.in);
+   
+   static int I = entree.nextInt();
+   static int NB = entree.nextInt();
+   
+
+   public static void main(String[] args) {
+      int tmp = 0;
+      int tmp2 = 0;
+      
+      ArrayList<Integer> IFRIENDS = new ArrayList<Integer>();
+      ArrayList<int[]> FFRIENDS = new ArrayList<int[]>();
+   
+      for (int i = 0; i < NB ; i++){
+         tmp = entree.nextInt();
+         tmp2 = entree.nextInt();
+         
+         if (tmp == I ){
+            IFRIENDS.add(tmp2);
+         } else if(tmp2 == I){
+            IFRIENDS.add(tmp);
+         } else {
+            FFRIENDS.add(new int[]{tmp, tmp2});
+         }
+      }
+      
+      
+      System.out.println(Compute(IFRIENDS,FFRIENDS));
+      
+    }
+    
+    public static int Compute(ArrayList<Integer> m, ArrayList<int[]> r) {   
+       int tmp = 0;
+       int tmp2 = 0;
+       
+       int ans = 0;
+       boolean notIn = true;
+       boolean none = false;
+       
+       ArrayList<Integer> removed = new ArrayList<Integer>();
+       
+       for (int i = 0 ; i < r.size(); i++){
+          tmp = r.get(i)[0];
+          tmp2 = r.get(i)[1];
+          notIn = true;
+          for (int j =0; j < m.size(); j++){
+             //if (i > -1)System.out.println(ans +"      "+tmp+" " + tmp2+"   "+m.get(j));
+             if( tmp == m.get(j)&& removed.contains(tmp2)==false){
+                //System.out.println("test");
+                for (int k = 0; k<m.size();k++){
+                //System.out.println("test");
+                   if(k !=j){
+                      if(tmp2 == m.get(k)){
+                         //System.out.println("a");
+                         notIn = false;
+                      }  
+                   }
+                }
+               if (notIn){
+                  removed.add(tmp2);
+                  ans++;
+                  //System.out.println("+");
+               } 
+             } else if (tmp2 == m.get(j) && removed.contains(tmp)==false){
+                //if (i > 6)System.out.println("test");
+                for (int k = 0; k<m.size();k++){
+                //System.out.println("test2");
+                   if(k !=j){
+                      if(tmp == m.get(k)){
+                         //System.out.println("b");
+                         notIn = false;
+                      }  
+                   }
+                }
+               if (notIn){
+                  ans++;
+                  removed.add(tmp);
+                  //System.out.println("+");
+               } 
+             }
+          }
+       } 
+    
+    return ans;   
+   }
+   
+}   

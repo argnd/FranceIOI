@@ -1,0 +1,61 @@
+import static java.lang.Math.*;
+import java.util.*;
+import java.util.Arrays;
+import algorea.Scanner;
+import java.lang.StringBuffer;
+class Main {
+   
+  public static Scanner entree = new Scanner(System.in);
+  public static final int NB = entree.nextInt();
+  
+  
+  
+  public static void main(String[] args) {
+  
+     String[] list = new String[NB];
+     for (int i = 0; i< NB; i++){
+        list[i]=entree.nextLine();
+     }
+     
+     System.out.println(list[0]);
+     int prev = 0;
+     
+     for (int i = 1; i< NB; i++){
+         if (IsValidChoice(list, i, prev) == true){
+            System.out.println(list[i]);
+            prev = i;
+         }
+     }
+  }
+  
+  public static boolean IsValidChoice(String[] str ,int index, int pRead) {
+
+     String[] tmp = new String[2];
+     String[] tmp2 = new String[2];
+     
+     tmp[0] = str[index];
+     tmp[1] = str[pRead];
+     tmp2[0] = str[index];
+     tmp2[1] = str[pRead];
+     
+     
+     //System.out.println(tmp[0]); 
+     //System.out.println(tmp[1]);   
+     //System.out.println(tmp2[0]); 
+     //System.out.println(tmp2[1]);  
+     
+     Arrays.sort(tmp2);
+     
+     //System.out.println(tmp[0]); 
+     //System.out.println(tmp[1]);   
+     //System.out.println(tmp2[0]); 
+     //System.out.println(tmp2[1]);  
+     
+     if (tmp[0].equals(tmp2[0])){
+        return false;
+     }
+   return true;
+  }
+  
+  
+}

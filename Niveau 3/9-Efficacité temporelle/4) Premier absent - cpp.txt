@@ -1,0 +1,23 @@
+#includecstdio
+bool presents[250  1000 + 1];
+int main(){
+  int nb_presents, nb_eleves;
+  scanf(%d%d, &nb_eleves, &nb_presents);
+  int premier_absent = 0;
+  for(int present = 0; present  nb_presents; present++)
+  {
+    int id;
+    scanf(%d, &id);
+    id--;
+    if(id  nb_presents)
+      presents[id] = true;
+    while(premier_absent  nb_eleves && presents[premier_absent])
+      premier_absent++;
+    if(premier_absent == nb_eleves)
+      printf(-1n);
+    else
+      printf(%dn, premier_absent + 1);
+  }
+  return 0;
+}
+Test 1	

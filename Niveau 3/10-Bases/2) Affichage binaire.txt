@@ -1,0 +1,17 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int N= entree.nextInt();
+     
+   public static void main(String[] args) {
+   
+   System.out.println(Integer.toBinaryString(N));
+   
+  } //main
+  
+}//class

@@ -1,0 +1,59 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int Na = entree.nextInt();
+
+        
+   public static void main(String[] args) {
+  
+   int[] a = new int[Na];
+   
+   for (int i = 0; i < Na; i++){
+      a[i] = entree.nextInt();
+   }
+   
+   final int Nb = entree.nextInt();
+   int[] b = new int[Nb];
+   for (int i = 0; i < Nb; i++){
+      b[i] = entree.nextInt();
+   }
+   
+   int[] finalarr = mergearrays(a,b);
+   
+   Arrays.sort(finalarr);
+   
+   for (int i = 0; i < finalarr.length; i++){
+      System.out.print(finalarr[i]+" ");
+   }
+   
+   
+  } //main
+   
+  public static int[] mergearrays(int[] aa, int[] bb){
+     int tailletot = aa.length+bb.length;
+     
+     int[] newarr  = new int[tailletot];
+     int c = 0;
+     
+     for (int j = 0; j < aa.length; j++){
+        newarr[c] = aa[j];
+        c++;
+     }
+     
+
+     for (int k = 0; k < bb.length; k++){
+        newarr[c] = bb[k];
+        c++;
+     }
+    
+    return newarr;
+     
+  } 
+   
+
+}//class

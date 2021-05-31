@@ -1,0 +1,66 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int N = entree.nextInt();
+
+   public static void main(String[] args) {
+  
+   
+   int[][] ValeursEnBinaire= new int[N][N];
+   
+   
+  for (int i = 1; i <= N;i++){
+     for (int j = 1; j <= N ; j++){
+        //ValeursEnBinaire[i][j] = Arrays.toString(fromBaseTenToBaseX(i*j,2));
+        System.out.print(Arrays.toString(fromBaseTenToBaseX(i*j,2)).replaceAll("[^0-9]", "")+'\t');
+     }
+   System.out.println();
+  }
+   
+  } //main
+  
+  public static int toBaseTen(int[] Valeurs,int BaseFrom ) {
+  
+   int ans = 0;
+   int val = 0;
+   for (int i = 0; i <Valeurs.length; i++){
+   val = Valeurs[i];
+   val = val*((int)Math.pow(BaseFrom,Valeurs.length-i-1));
+   ans = ans + val;
+   }
+  return ans;
+  } //function
+  
+  public static int[] fromBaseTenToBaseX(int valeur,int BaseTo) {
+  
+   List<Integer> ch = new ArrayList<Integer>();
+   
+   int reste =0;
+   int quotien = 0;
+   int tmp = valeur; 
+   
+   do 
+   {
+     reste = tmp % BaseTo;
+     ch.add(reste);
+     quotien =(int)(tmp / BaseTo);
+     tmp = quotien;
+     
+   } while (quotien!=0);
+   
+   int[] res = new int[ch.size()];
+   int c =0;
+   for (int i = ch.size()-1; i >= 0; i--){
+      res[c]= ch.get(i);
+      c++;
+   }
+  return res;
+  }
+
+
+}//class

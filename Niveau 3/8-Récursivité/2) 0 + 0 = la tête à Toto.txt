@@ -1,0 +1,26 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int NB = entree.nextInt();
+    
+   public static void main(String[] args) {
+
+   System.out.print("0 = ");
+   System.out.print(recursiv(NB));
+   
+   }
+   
+   public static String recursiv (int nb){
+   
+   if (nb == 0)return "0";
+ 
+   String s = recursiv(nb-1);
+   String f = "("+s+" + "+s+")";
+   return f;
+  }
+}

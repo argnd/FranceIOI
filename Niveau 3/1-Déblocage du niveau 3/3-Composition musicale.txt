@@ -1,0 +1,68 @@
+import static java.lang.Math.*;
+import java.util.Arrays;
+import algorea.Scanner;
+import java.lang.StringBuffer;
+
+class Main {
+
+   public static Scanner entree = new Scanner(System.in);
+   public static String list = entree.nextLine();
+   public static boolean notvalid = true;
+   public static char[] oList = list.toCharArray();
+   
+   
+   public static void main(String[] args) {
+
+    do {
+      char[] r = Itterate(oList);
+      oList = r;
+      isvalid(oList);
+      } while (notvalid);
+      
+       for (int i = 0; i < oList.length; i = i+1){  
+       System.out.print(oList[i]);
+       }
+    }
+    
+     public static char[] Itterate(char[] str) {
+        for (int i = 1; i < str.length; i = i +1){
+        char Curr = str[i];
+        char Prev = str[i-1];
+           if (Curr == Prev){
+           char[] results = removeTheElement(str, i);
+           char[] result2 = removeTheElement(results , i-1);
+           return result2;
+           }
+        }
+       return str;
+       }
+    
+     public static void isvalid(char[] str) {
+           for (int i = 1; i < str.length;i = i+1){
+           char curr = str[i];
+           char prev = str[i-1];
+              if (curr == prev){
+              notvalid = true;
+              return;
+              }
+           }
+           notvalid = false;
+           return;
+       }   
+
+
+    public static char[] removeTheElement(char[] arr, int index) 
+       { 
+           if (arr == null || index < 0 || index >= arr.length) { 
+               return arr; 
+           } 
+           char[] anotherArray = new char[arr.length - 1]; 
+           for (int i = 0, k = 0; i < arr.length; i++) { 
+               if (i == index) { 
+                   continue; 
+               } 
+               anotherArray[k++] = arr[i]; 
+           } 
+           return anotherArray; 
+   }
+}

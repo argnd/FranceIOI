@@ -1,0 +1,75 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+  public static Scanner entree = new Scanner(System.in);
+  
+  public static final int NB= entree.nextInt();
+
+  public static void main(String[] args) {
+     for (int i =2 ; i< NB+1; i++){
+     System.out.println(Decypher(entree.nextLine(),calcKey(i)));
+     }
+  }
+  
+  public static int calcKey(int x) {
+     int key;
+     if (x%2 == 0){
+         key = x*3;
+     } else {
+         key = x*(-5);
+     }
+   return key;  
+  }
+  
+  public static String Decypher(String s, int key) {
+     StringBuilder sb = new StringBuilder();
+     for (int i = 0; i< s.length(); i++){
+        sb.append(Permutation(s.charAt(i), key));
+     }
+  return sb.toString();
+  }
+  
+  public static char Permutation(char c, int key) {
+  int currenkeyval;
+  int shiftedkeyval;
+  char permuted='z';
+ 
+     if (Character.isUpperCase(c)){
+        currenkeyval= (int) c -'A';
+        shiftedkeyval = currenkeyval - key;
+       do {
+          if (shiftedkeyval <0){
+          int prev = shiftedkeyval;
+          shiftedkeyval = 26 + prev;
+          }
+          if (shiftedkeyval >=26){
+          int prev = shiftedkeyval-26;
+          shiftedkeyval = 0 + prev;  
+          }
+       } while (shiftedkeyval<0 || shiftedkeyval >= 26);
+       permuted = (char) (shiftedkeyval+(int)'A'); 
+     }else if(Character.isLowerCase(c)){
+       currenkeyval= (int) c -'a';
+       shiftedkeyval = currenkeyval - key;
+        do {
+          if (shiftedkeyval <0){
+          int prev = shiftedkeyval;
+          shiftedkeyval = 26 + prev;
+          }
+          if (shiftedkeyval >=26){
+          int prev = shiftedkeyval-26;
+          shiftedkeyval = 0 + prev;  
+          }
+       } while (shiftedkeyval<0 || shiftedkeyval >= 26);
+       permuted = (char) (shiftedkeyval+(int)'a'); 
+     } else {
+        permuted = c;
+     }
+  return permuted;
+  }
+      
+}

@@ -1,0 +1,53 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+class Main {
+ public static Scanner entree = new Scanner(System.in);
+ 
+ public static final int NBAUTO= entree.nextInt();
+
+ public static void main(String[] args) {
+ 
+ int compteur = 0;
+ int[] ordre = new int[NBAUTO];
+ 
+ int MaxCroisement= 0; 
+ for (int i = NBAUTO ; i>0;i--){
+    MaxCroisement = MaxCroisement + i;
+ }
+ 
+ int[][] croisement= new int[MaxCroisement][2];
+ 
+ for (int i = 0; i < NBAUTO; i++){
+    ordre[i] = entree.nextInt();
+ }
+ 
+  for (int i = 1; i <= NBAUTO; i++){
+     for (int j = i; j < NBAUTO; j++){
+       if(i ==  ordre[j]){
+          int k = j;
+          do {
+            if (k>0) {
+               croisement[compteur][0] = ordre[k-1];
+               croisement[compteur][1] = ordre[k];         
+               int tmp = ordre[k];
+               ordre[k] = ordre[k-1];
+               ordre[k-1]=tmp;
+               compteur += 1;
+               k--;
+             }
+          } while (ordre[i-1] != i && k >0);
+       }
+     } 
+   }
+   
+  System.out.println(compteur);
+  //System.out.println(croisement[0][0]);
+   for (int i = 0; i < compteur ;i++){
+      System.out.println(croisement[i][0]+ " " +croisement[i][1]);
+   }
+
+ } //main 
+  
+} //class

@@ -1,0 +1,25 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int BASE = entree.nextInt();
+   public static final int NB = entree.nextInt();    
+   
+   public static void main(String[] args) {
+  
+   int ans = 0;
+   
+   for (int i = NB-1; i >= 0; i--){
+   int val =entree.nextInt();
+   val = val*((int)Math.pow(BASE,i));
+      ans = ans + val;
+   }
+   System.out.println(ans);
+   
+  } //main
+
+}//class

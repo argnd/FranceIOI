@@ -1,0 +1,43 @@
+import static java.lang.Math.*;
+import java.util.Arrays;
+import algorea.Scanner;
+import java.lang.StringBuffer;
+
+//Algo from wikipedia
+
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final int N = entree.nextInt();
+   
+   public static void main(String[] args) {
+      vider(N);
+      
+   }  //main 
+   
+      
+   public static void remplir(int n) {
+      if (n == 1){
+         System.out.println(n);
+      }
+      if (n >1){ 
+         remplir(n-1);
+         vider(n-2);
+         System.out.println(n);
+         remplir(n-2);
+      }
+      
+   }  
+   public static void vider(int n) {
+      if (n == 1){
+         System.out.println(n);
+      }
+      if (n >1){ 
+         vider(n-2);
+         System.out.println(n);
+         remplir(n-2);
+         vider(n-1);
+      }
+      
+   }  
+}  //class

@@ -1,0 +1,27 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+class Main {
+ public static Scanner entree = new Scanner(System.in);
+ public static final int NB= entree.nextInt();
+ 
+ public static void main(String[] args) {
+    int[] prod = new int[NB];
+    for (int i = 0; i < NB; i++){
+       prod[i] = entree.nextInt();
+    }
+    
+    final int MV = entree.nextInt(); 
+    
+    for (int i = 0; i < MV; i++){
+       int tmp = entree.nextInt()-1;
+       prod[tmp] = prod[tmp] + entree.nextInt();
+    }
+     for (int i = 0; i < NB; i++){
+         System.out.print(prod[i] + " ");
+    }
+     
+ } //main 
+ 
+ } // class

@@ -1,0 +1,45 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+class Main {
+   
+   public static final Scanner entree = new Scanner(System.in);
+   public static final String S= entree.nextLine();
+   
+   public static void main(String[] args) {
+     
+    int maximpair = 0;
+    int maxpair = 0;
+    int decalage = 0;
+    double decalagepair =0.5;
+       
+    for (int i  = 1; i< S.length(); i++) { // palindromes de tailles imapair
+        decalage = 0;
+        while ((i + decalage) < S.length() && (i -  decalage) >= 0 && S.charAt(i+decalage) == S.charAt(i-decalage) ){
+           if (decalage > maximpair ) maximpair = decalage;
+           decalage++;
+        }
+    }
+    
+    for (int i  = 1; i< S.length(); i++) { // palindromes de tailles pair
+        decalagepair = 0.5;
+        while ((int) (i + decalagepair)< S.length() && (double)( i -  decalagepair )>= 0 && S.charAt((int)(i+decalagepair)) == S.charAt((int)(i-decalagepair))){
+             
+           decalagepair += 0.5;
+            if ((int)decalagepair> maxpair ){
+               maxpair = (int) decalagepair;
+            }
+           decalagepair -= 0.5;
+           
+           decalagepair++;
+       };
+    }
+    
+      maximpair = (maximpair*2)+1;
+      maxpair = (maxpair)*2;
+      System.out.println(maxpair > maximpair ? maxpair : maximpair);
+
+      
+  } //main
+}//class

@@ -1,0 +1,51 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+class Main {
+ public static Scanner entree = new Scanner(System.in);
+ 
+ public static final int N= entree.nextInt();
+ public static final int M= entree.nextInt();
+ 
+
+ public static void main(String[] args) {
+ int[] bacs = new int[N+M];
+
+ for (int i = 0; i < N; i ++){
+    bacs[i] = entree.nextInt();
+ }
+ 
+ for (int i = 0; i < M; i ++){
+    int curr  = entree.nextInt();
+    for (int j = 0; j < bacs.length; j++){
+       if (j == N+i){
+          bacs[j] = curr;
+          System.out.print(j + " ");
+          break;
+       }
+       if (curr <= bacs[j]){
+          DecaleraDroite(bacs,j, N+i);
+          bacs[j] = curr;
+          System.out.print(j + " ");
+          break;
+       }
+
+    } 
+ }
+ System.out.println();
+  for (int i = 0 ; i < bacs.length; i++){
+    if (i == bacs.length-1){    
+     System.out.print(bacs[i]);
+     } else {
+       System.out.print(bacs[i] + " ");
+    }
+   }
+ } //main
+ 
+ public static void DecaleraDroite(int[] t, int first, int last){
+     for (int i = last; i > first ; i --){
+        t[i] = t[i-1];
+     }
+ } 
+} //class

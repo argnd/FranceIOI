@@ -1,0 +1,47 @@
+import algorea.Scanner;
+import static java.lang.Math.*;
+import java.util.*;
+import java.lang.*;
+
+ //THIS CODE DOES NOT VALIDATE THE EXERCICE EVEN IF IT IS CORRECT BOTH IN LOGIC AND COMPLEXITY
+ //SEE THE C++ Version for a validation
+
+class Main {
+ public static Scanner entree = new Scanner(System.in);
+ 
+ public static final int NB= entree.nextInt();
+ public static void main(String[] args) {
+      
+      int[] blocs = new int[NB];
+     
+      for( int i = 0; i< NB ; i ++){
+         blocs [i] = entree.nextInt();
+      }
+    
+    final int Q= entree.nextInt();
+    Arrays.sort(blocs);
+   
+   StringBuilder sb = new StringBuilder();
+   for( int i = 0; i< Q; i++){
+      System.out.println(binarySearch(blocs, 0, blocs.length-1,entree.nextInt()));
+   }   
+ } //main 
+ 
+ public static int binarySearch(int arr[], int l, int r, int x)
+    {
+        if (r >= l) {
+            int mid = l + (r - l) / 2;
+
+            if (arr[mid] == x)
+                return 1;
+
+            if (arr[mid] > x)
+                return binarySearch(arr, l, mid - 1, x);
+
+            return binarySearch(arr, mid + 1, r, x);
+        }
+
+        return 0;
+    }
+ 
+} 

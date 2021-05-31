@@ -1,0 +1,23 @@
+import algorea.Scanner;
+import java.lang.StringBuffer;
+class Main {
+   
+  public static Scanner entree = new Scanner(System.in);
+ 
+  public static void main(String[] args) {
+  
+    int sum = 0;
+  do {
+        try
+       {
+           int val = entree.nextInt();
+           sum = sum + val;
+        }
+        catch (Exception e)
+       {
+        break;
+       }
+    } while (true);
+  System.out.println(sum);  
+  }
+}

@@ -1,0 +1,35 @@
+import static java.lang.Math.*;
+import java.util.*;
+import algorea.Scanner;
+import java.lang.StringBuffer;
+
+
+class Main {
+
+  public static Scanner entree = new Scanner(System.in);
+  public static int NbLivres = entree.nextInt();
+  public static List<String> Pals= new ArrayList<>();
+  
+  public static void main(String[] args) {
+      for (int i = 0 ;i< NbLivres ; i++){
+       String ocBook = entree.nextLine();
+       String cBook = ocBook.toUpperCase().replaceAll("\\s+","");
+       if (IsPalindrome(cBook)==true) Pals.add(ocBook);
+      }
+
+     for (int i = 0; i < Pals.size(); i++){
+        System.out.println(Pals.get(i));
+     }  
+  }
+   
+   public static  boolean IsPalindrome( String s)
+   {
+      boolean isPal = false;
+      StringBuilder reverse = new StringBuilder();
+      for (int i = s.length()-1; i >= 0; i--){
+         reverse.append(s.charAt(i));
+      }
+      if (reverse.toString().equals(s)) isPal = true;
+      return isPal;
+   }   
+}
